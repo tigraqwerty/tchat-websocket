@@ -5,9 +5,17 @@
 		"name": "Tigran Saakyan",
 		"url": "https://www.linkedin.com/in/tigran-saakyan/?locale=en_US"
 	},
-	"license": "AML",
+	"license": "ISC",
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/tigraqwerty/tchat-websocket.git"
+	},
+	"scripts": {
+		"test": "echo \"ERROR: Not test script implemented \" "
+	},
+	"main": "index.js",
+	"type": "module",
+	"dependencies": {
+		"ws": "^8.0.0"
 	}
 }
