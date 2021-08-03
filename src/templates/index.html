@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>TChat</title>
+</head>
+
+<body>
+	<main>
+		<form id="messageForm">
+			<input id="name" type="text" name="name" placeholder="Name" />
+			<input id="message" type="text" name="message" placeholder="Input your message" />
+			<input type="submit" value="Send Message" />
+		</form>
+		<div id="chat">
+
+		</div>
+	</main>
+	<script type="module">
+		const chat = document.getElementById('chat');
+		const websocket = new WebSocket('ws://127.0.0.1:8088');
+
+		websocket.onmessage = (response) => {
+			let messages = JSON.parse(response.data);
+			messages.forEach(ms => {
+				let messageEl = document.createElement('div');
+				messageEl.appendChild(document.createTextNode(`${ms.name}: ${ms.message}`))
+				chat.appendChild(messageEl)
+			});
+		};
+
+		const send = (ev) => {
+			ev.preventDefault();
+			ev.stopPropagation();
+
+			let name = document.getElementById('name').value;
+			let message = document.getElementById('message').value;
+
+			websocket.send(JSON.stringify({ name, message }));
+
+			return false;
+		};
+
+		const form = document.getElementById('messageForm');
+		form.addEventListener('submit', send)
+
+
+	</script>
+</body>
+
+</html>
