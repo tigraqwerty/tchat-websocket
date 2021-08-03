@@ -11,11 +11,13 @@
 		"url": "https://github.com/tigraqwerty/tchat-websocket.git"
 	},
 	"scripts": {
-		"test": "echo \"ERROR: Not test script implemented \" "
+		"test": "echo \"ERROR: Not test script implemented \" ",
+		"server:start": "npx nodemon --experimental-modules ./src/server.js"
 	},
 	"main": "index.js",
 	"type": "module",
 	"dependencies": {
+		"uuid": "^8.3.2",
 		"ws": "^8.0.0"
 	}
 }
