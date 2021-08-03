@@ -1,11 +1,13 @@
 import WebSocket, { WebSocketServer } from 'ws';
 import {v4 as uuid} from 'uuid';
-import { writeFile  } from 'fs';
+import { writeFile, existsSync, readFileSync } from 'fs';
 
 const wss = new WebSocketServer({port: '8088'});
 
+const logs = existsSync('./logs/log.json') && readFileSync('./logs/log.json');
+
 const clients = {};
-const messages = []
+const messages =  JSON.parse(logs) || [];
 
 wss.on('connection', (ws) => {
 	const id = uuid(); 
