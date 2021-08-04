@@ -11,5 +11,10 @@
   ],
   "include": [
     "src/**/*.d.ts"
-  ]
+  ],
+  "paths": {
+    "@shared/*": [
+      "src/app/shared/*"
+    ]
+  }
 }
